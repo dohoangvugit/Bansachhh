@@ -1,0 +1,42 @@
+{{#if isLogin}}
+<form class="login-form" method="POST" action="/auth/login">
+    <h2>Đăng nhập</h2>
+
+    <p class="error-message" style="color: red;">{{error}}</p>
+
+    <input type="email" name="email" placeholder="Email" required>
+
+    <div class="password-container">
+        <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
+        <span class="toggle-password" onclick="togglePasswordVisibility()">
+            <img id="password-icon"
+                 src="https://cdn-icons-png.flaticon.com/512/159/159604.png">
+        </span>
+    </div>
+
+    <button type="submit" class="submit-btn">Đăng nhập</button>
+
+    <p>
+        Chưa có tài khoản? <a href="/auth?mode=register">Đăng ký</a>
+    </p>
+</form>
+{{else}}
+<form class="register-form" method="POST" action="/auth/register">
+    <h2>Đăng ký</h2>
+
+    <input type="text" name="fullname" placeholder="Họ tên" required>
+    <input type="email" name="email" placeholder="Email" required>
+
+    <input type="tel" name="phone" placeholder="SĐT"
+           pattern="\d{10}" required>
+
+    <input type="password" name="password" placeholder="Mật khẩu" required>
+    <input type="password" name="confirm-password" placeholder="Nhập lại mật khẩu" required>
+
+    <button type="submit" class="submit-btn">Đăng ký</button>
+
+    <p>
+        Đã có tài khoản? <a href="/auth?mode=login">Đăng nhập</a>
+    </p>
+</form>
+{{/if}}

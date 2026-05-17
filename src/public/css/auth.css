@@ -1,0 +1,141 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* LAYOUT */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* TITLE */
+.login-form h2,
+.register-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* FACEBOOK BUTTON (dùng chung) */
+.facebook-btn {
+    width: 100%;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+
+    background: #4267B2;
+    color: white;
+    border: none;
+
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.facebook-btn:hover {
+    background: #365899;
+}
+
+/* OR TEXT */
+.or-text {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* INPUTS (dùng chung login + register) */
+input,
+.dropdown {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* DATE INPUT */
+input[type="date"] {
+    color: #6c757d;
+}
+
+/* PASSWORD TOGGLE */
+.password-container {
+    position: relative;
+}
+
+.password-container input {
+    padding-right: 40px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.toggle-password img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+}
+
+.toggle-password img:hover {
+    opacity: 1;
+}
+
+/* BUTTON */
+.submit-btn {
+    width: 100%;
+    background: #ff5722;
+    color: white;
+
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #e64a19;
+}
+
+/* LINKS */
+.login-link,
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.login-link a,
+.register-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-link a:hover,
+.register-link a:hover {
+    text-decoration: underline;
+}

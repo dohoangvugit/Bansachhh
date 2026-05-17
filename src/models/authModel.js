@@ -2,10 +2,10 @@ const mysql = require('../config/mysql')
 
 const authModel = {
 
-    login: async (fullname, password) => {
+    login: async (email, password) => {
         try{
-            const sql = 'SELECT * FROM users WHERE fullname = ? AND password = ?'
-            const [rows] = await mysql.execute(sql, [fullname, password])
+            const sql = 'SELECT * FROM users WHERE email = ? AND password = ?'
+            const [rows] = await mysql.execute(sql, [email, password])
             console.log('Kết quả đăng nhập:', rows)
             return rows[0]
         } catch (error) {
