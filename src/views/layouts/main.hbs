@@ -10,5 +10,20 @@
     <div class="container">
         {{{body}}}
     </div>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const passwordIcon = document.getElementById('password-icon');
+            
+            // Đổi kiểu hiển thị mật khẩu
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordIcon.src = 'https://cdn-icons-png.flaticon.com/512/709/709612.png'; // Biểu tượng "mắt mở"
+            } else {
+                passwordInput.type = 'password';
+                passwordIcon.src = 'https://cdn-icons-png.flaticon.com/512/159/159604.png'; // Biểu tượng "mắt đóng"
+            }
+        }
+    </script>
 </body>
 </html>
