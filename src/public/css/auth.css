@@ -1,11 +1,9 @@
-/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* LAYOUT */
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
@@ -24,14 +22,12 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* TITLE */
 .login-form h2,
 .register-form h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-/* FACEBOOK BUTTON (dùng chung) */
 .facebook-btn {
     width: 100%;
     display: block;
@@ -52,7 +48,6 @@ body {
     background: #365899;
 }
 
-/* OR TEXT */
 .or-text {
     text-align: center;
     margin: 15px 0;
@@ -60,7 +55,6 @@ body {
     color: #6c757d;
 }
 
-/* INPUTS (dùng chung login + register) */
 input,
 .dropdown {
     width: 100%;
@@ -72,12 +66,10 @@ input,
     font-size: 14px;
 }
 
-/* DATE INPUT */
 input[type="date"] {
     color: #6c757d;
 }
 
-/* PASSWORD TOGGLE */
 .password-container {
     position: relative;
 }
@@ -104,7 +96,6 @@ input[type="date"] {
     opacity: 1;
 }
 
-/* BUTTON */
 .submit-btn {
     width: 100%;
     background: #ff5722;
@@ -121,7 +112,6 @@ input[type="date"] {
     background: #e64a19;
 }
 
-/* LINKS */
 .login-link,
 .register-link {
     text-align: center;

@@ -1,0 +1,88 @@
+<div id="content">
+    <div id="menu-slider">
+        <div id="sub-menu">
+            <ul>
+                <li><a href="/menu/menucomic">Truyện tranh</a></li>
+                <li><a href="/menu/menusachvn">Sách Việt Nam</a></li>
+                <li><a href="/menu/menusachnn">Sách nước ngoài</a></li>
+            </ul>
+        </div>
+
+        <div id="slider"></div>
+    </div>
+
+    {{#if comics}}
+        <div id="comic">
+            <h2 id="h-comic">Truyện tranh</h2>
+        </div>
+
+        <div class="padding"></div>
+
+        <div id="comic-list">
+            {{#each comics}}
+                <div class="comic-name">
+                    <a href="/books/{{id}}">
+                        <img src="{{image_url}}" alt="{{title}}" class="comic-img">
+                        <h2>{{title}}</h2>
+                    </a>
+
+                    <p>Giá: {{formatPrice price}} VND</p>
+                </div>
+            {{/each}}
+        </div>
+
+        <div class="more">
+            <a href="/menu/menucomic">Xem thêm</a>
+        </div>
+    {{/if}}
+
+    {{#if vietnamBooks}}
+        <div id="bookVN">
+            <h2 id="h-bookVN">Sách Việt Nam</h2>
+        </div>
+
+        <div class="padding"></div>
+
+        <div id="bookVN-list">
+            {{#each vietnamBooks}}
+                <div class="bookVN-name">
+                    <a href="/books/{{id}}">
+                        <img src="{{image_url}}" alt="{{title}}" class="bookVN-img">
+                        <h2>{{title}}</h2>
+                    </a>
+
+                    <p>Giá: {{formatPrice price}} VND</p>
+                </div>
+            {{/each}}
+        </div>
+
+        <div class="more">
+            <a href="/menu/menusachvn">Xem thêm</a>
+        </div>
+    {{/if}}
+
+    {{#if foreignBooks}}
+        <div id="book-foreign">
+            <h2 id="h-book-foreign">Sách nước ngoài</h2>
+        </div>
+
+        <div class="padding"></div>
+
+        <div id="book-foreign-list">
+            {{#each foreignBooks}}
+                <div class="book-foreign-name">
+                    <a href="/books/{{id}}">
+                        <img src="{{image_url}}" alt="{{title}}" class="book-foreign-img">
+                        <h2>{{title}}</h2>
+                    </a>
+
+                    <p>Giá: {{formatPrice price}} VND</p>
+                </div>
+            {{/each}}
+        </div>
+
+        <div class="more">
+            <a href="/menu/menusachnuocngoai">Xem thêm</a>
+        </div>
+    {{/if}}
+</div>

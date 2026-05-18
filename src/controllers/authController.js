@@ -6,6 +6,7 @@ const authController = {
         const mode = req.query.mode || 'login'
 
         res.render('auth', {
+            layout: 'auth',
             isLogin: mode === 'login'
         })
     },
