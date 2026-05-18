@@ -1,376 +1,351 @@
 *{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-#main{
-
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+#main{
+    width:100%;
 }
 
 #header{
-        display: flex;
-        overflow: hidden;
-        white-space: nowrap;
-        align-items: center;
-        background-color: #fd501b;
-        padding: 0 16px;
-        height: 46px;
-        width: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1000;
+    width:100%;
+    height:70px;
+    background:#fd501b;
+    padding:0 30px;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
 }
-
 
 #nav{
-    display:inline-block;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    list-style:none;
 }
 
-#nav li:hover a{
-    background-color: #ccc;
-    line-height: 46px;
-    color:#000;
-}
-
-#nav li a{
-    list-style-type: none;
-    text-decoration: none;
+.logo{
+    display:flex;
+    align-items:center;
     color:#fff;
-    padding: 16px;
+    font-size:28px;
+    font-weight:bold;
 }
 
-#header #nav li{
-    display:inline;
-    line-height: 46px;
-    margin:16px;
+.search-box{
+    width:100%;
+    max-width:500px;
+    height:42px;
+    background:#fff;
+    border-radius:999px;
+    display:flex;
+    align-items:center;
+    padding:0 16px;
 }
 
-#header .header-ti-search{
-    color:#fff;
-    font-size: 20px;
-    margin-top: 12px;
+.header-ti-search{
+    font-size:18px;
+    color:#999;
+    margin-right:10px;
 }
 
 .search{
-    min-width: 400px;
-    height: 28px;
+    flex:1;
+    border:none;
+    outline:none;
+    font-size:15px;
 }
 
-#header>li:hover{
-    color:#000;
+.user-menu{
+    position:relative;
 }
 
-#header .cart:hover{
-    background-color: #ccc;
+.user-avatar{
+    width:42px;
+    height:42px;
+    background:#fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     cursor:pointer;
+    transition:0.3s;
 }
 
-#header .cart{
-    font-size: 20px;
-    line-height: 46px;
-    list-style-type: none ;
-    color:#fff;
-    margin-left: auto;
+.user-avatar:hover{
+    transform:scale(1.05);
 }
 
-#content #menu{
-    margin-top: 46px;
-    position: relative;
-    background-color: #757575;
-    line-height: 36px;
-    height: 36px;
-    padding-left: 12px;
+.user-avatar i{
+    font-size:20px;
+    color:#fd501b;
 }
 
-#content #content-menu:hover{
-    cursor:pointer;
-    color:#fff;
+.dropdown{
+    position:absolute;
+    top:55px;
+    right:0;
+    width:220px;
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    list-style:none;
+    display:none;
 }
 
-#menu #content-menu{
+.dropdown li a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 18px;
+    text-decoration:none;
+    color:#333;
+    transition:0.2s;
+}
+
+.dropdown li a:hover{
+    background:#fff1ec;
+    color:#fd501b;
+}
+
+.user-menu:hover .dropdown{
+    display:block;
+}
+
+#content{
+    margin-top:70px;
+}
+
+#menu{
+    background:#757575;
+    line-height:36px;
+    height:36px;
+    padding-left:12px;
+}
+
+#content-menu{
     display:inline-block;
+    color:#fff;
+    transition:0.2s;
 }
 
-/* menu và slider  */
-/* css menu */
+#content-menu:hover{
+    cursor:pointer;
+    opacity:0.8;
+}
+
 #menu-slider{
-    display: grid;
-    grid-template-columns: 220px 1fr;
+    display:grid;
+    grid-template-columns:220px 1fr;
 }
 
-#content #sub-menu{
-    background-color: #ddd;
-    padding-left: 32px;
-    padding-top: 16px;
-    line-height: 100px;
-    /* display:none; */
+#sub-menu{
+    background:#ddd;
+    padding-left:32px;
+    padding-top:16px;
 }
 
-#sub-menu li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    list-style-type: none;
-    padding-right: 16px;
+#sub-menu li{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    list-style:none;
+    padding-right:16px;
+    line-height:60px;
+    transition:0.2s;
 }
 
 #sub-menu li:hover{
     color:#fd501b;
     cursor:pointer;
+    transform:translateX(5px);
 }
 
 #sub-menu li a{
-    text-decoration: none;
-    display:inline-block;
-    color: inherit;
+    text-decoration:none;
+    color:inherit;
 }
 
-#sub-menu .sub-menu-angle-right{
-    margin-left: auto;
+.sub-menu-angle-right{
+    margin-left:auto;
 }
 
-/* css slider */
-#content #slider{
-    background-size: cover;
-    animation: slide 10s infinite;
-    height:320px;
-} 
-
-#content #slider {
-    background-size: cover;
-    height: 320px;
-    animation: slide 12s infinite;
+#slider{
+    background-size:cover;
+    background-position:center;
+    height:332px;
+    animation:slide 12s infinite;
 }
 
-@keyframes slide {
-    /* Ảnh 1 */
-    0%, 30% {
-        background-image: url('https://bookbuy.vn/Res/Images/Album/8aee647d-753c-47c4-9c0e-c591563ea3d5.jpg?w=880&scale=both&h=320&mode=crop');
-        opacity: 1;
-    }
-    33%, 36% {
-        opacity: 0.7;
+@keyframes slide{
+    0%,30%{
+        background-image:url('https://bookbuy.vn/Res/Images/Album/8aee647d-753c-47c4-9c0e-c591563ea3d5.jpg?w=880&scale=both&h=320&mode=crop');
     }
 
-    /* Ảnh 2 */
-    37%, 67% {
-        background-image: url('https://bookbuy.vn/Res/Images/Album/1b3b3268-841f-4364-83e9-708f1d321735.jpg?w=880&scale=both&h=320&mode=crop');
-        opacity: 1;
-    }
-    70%, 73% {
-        opacity: 0.7;
+    33%,63%{
+        background-image:url('https://bookbuy.vn/Res/Images/Album/1b3b3268-841f-4364-83e9-708f1d321735.jpg?w=880&scale=both&h=320&mode=crop');
     }
 
-    /* Ảnh 3 */
-    74%, 97% {
-        background-image: url('https://bookbuy.vn/Res/Images/Album/503b1bc3-827c-4a57-9a51-b099f4d70104.jpg?w=880&scale=both&h=320&mode=crop');
-        opacity: 1;
-    }
-
-    /* Trở về ảnh đầu với độ mờ để chuyển mượt */
-    98%, 100% {
-        opacity: 0.7;
+    66%,100%{
+        background-image:url('https://bookbuy.vn/Res/Images/Album/503b1bc3-827c-4a57-9a51-b099f4d70104.jpg?w=880&scale=both&h=320&mode=crop');
     }
 }
 
-    /* truyện tranh */
-
-#comic{
+.section-title{
     height:36px;
-    background-color: #757575;
-    line-height: 36px;
-    text-transform: uppercase;
-    padding-left: 12px;
-    font-weight: bold;
-}
-
-#h-comic{
-    display:inline-block;
-}
-
-.padding{
-    height:10px
-}
-
-#comic-list{
-    overflow: hidden;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-#comic-list .comic-name{
-    font-size: 16px;
-    text-align: center;
-    float:left;
-    margin:  20px;
-    display: flex;
-    flex-direction: column; /* Sắp xếp các phần tử con theo chiều dọc */
-    align-items: center; /* Căn giữa các phần tử theo chiều ngang */
-    width:160px;
-}
-
-#comic-list h2 {
-    font-size: 18px;
-}
-
-#comic-list .comic-name a {
-    text-decoration: none;
-}
-
-#comic-list .comic-name h2:hover, #comic-list .comic-name .comic-img:hover{
-    opacity:0.7;
-}
-
-#comic-list .comic-name p {
-    margin-top: 12px;
-}
-
-#comic-list .comic-img{
-    width: 160px;
-    height:180px;
-    margin: 0 20px 12px 20px;
-
-}
-
-.more{
-    font-size: 20px;
-    text-align: center;
-    padding: 16px 0;
-}
-
-/* sách VN */
-
-#bookVN{
-    height:36px;
-    background-color: #757575;
-    line-height: 36px;
-    text-transform: uppercase;
-    padding-left: 12px;
-    font-weight: bold;
-    padding-top: 50px;
-}
-
-#h-bookVN{
-    display:inline-block;
-}
-
-#h-bookVN:hover {
+    background:#757575;
+    line-height:36px;
+    text-transform:uppercase;
+    padding-left:12px;
+    font-weight:bold;
     color:#fff;
+    margin-top:40px;
+}
+
+.section-title:hover{
+    opacity:0.8;
     cursor:pointer;
-
 }
 
-.padding{
-    height:10px
+.book-list{
+    overflow:hidden;
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    padding:20px 10px;
+    background:#fff;
 }
 
-#bookVN-list{
-    overflow: hidden;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+.book-item{
+    width:180px;
+    text-align:center;
+    margin:20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
-#bookVN-list .bookVN-name{
-    font-size: 16px;
-    text-align: center;
-    float:left;
-    margin:  20px;
-    display: flex;
-    flex-direction: column; /* Sắp xếp các phần tử con theo chiều dọc */
-    align-items: center; /* Căn giữa các phần tử theo chiều ngang */
+.book-item a{
+    text-decoration:none;
+    color:#000;
+}
+
+.book-item img{
     width:160px;
-}
-
-#bookVN-list h2 {
-    font-size: 18px;
-}
-
-#bookVN-list .bookVN-name p {
-    margin-top: 12px;
-}
-
-#bookVN-list .bookVN-img{
-    width: 160px;
     height:180px;
-    margin: 0 20px 12px 20px;
+    object-fit:cover;
+    margin-bottom:12px;
+    border-radius:8px;
+    transition:0.3s;
+}
 
+.book-item img:hover{
+    transform:scale(1.05);
+    opacity:0.9;
+}
+
+.book-item h2{
+    font-size:18px;
+    margin-bottom:10px;
+    transition:0.2s;
+}
+
+.book-item h2:hover{
+    color:#fd501b;
+}
+
+.book-item p{
+    margin-top:6px;
+    color:#555;
+    font-weight:bold;
 }
 
 .more{
-    font-size: 20px;
-    text-align: center;
-    padding-top: 16px;
+    font-size:20px;
+    text-align:center;
+    padding:16px 0;
+    background:#fff;
 }
 
-/* sách nước ngoài */
-
-#book-foreign{
-    height:36px;
-    background-color: #757575;
-    line-height: 36px;
-    text-transform: uppercase;
-    padding-left: 12px;
-    font-weight: bold;
+.more a{
+    text-decoration:none;
+    color:#fd501b;
+    font-weight:bold;
 }
 
-#h-book-foreign{
-    display:inline-block;
+.more a:hover{
+    opacity:0.8;
 }
 
-#h-book-foreign:hover {
-    color:#fff;
-    cursor:pointer;
+@media(max-width:1024px){
+    #menu-slider{
+        grid-template-columns:1fr;
+    }
 
+    #sub-menu{
+        display:none;
+    }
+
+    .search-box{
+        max-width:350px;
+    }
 }
 
-.padding{
-    height:10px
+@media(max-width:768px){
+    #header{
+        padding:0 15px;
+    }
+
+    .logo{
+        font-size:22px;
+    }
+
+    .search-box{
+        max-width:220px;
+        height:38px;
+    }
+
+    .book-item{
+        width:45%;
+    }
+
+    .book-item img{
+        width:140px;
+        height:160px;
+    }
 }
 
-#book-foreign-list{
-    overflow: hidden;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+@media(max-width:480px){
+    #nav{
+        gap:10px;
+    }
+
+    .search-box{
+        display:none;
+    }
+
+    .book-item{
+        width:100%;
+    }
+
+    .book-item img{
+        width:180px;
+        height:220px;
+    }
+
+    #slider{
+        height:220px;
+    }
 }
-
-#book-foreign-list .book-foreign-name{
-    font-size: 16px;
-    text-align: center;
-    float:left;
-    margin:  20px;
-    display: flex;
-    flex-direction: column; /* Sắp xếp các phần tử con theo chiều dọc */
-    align-items: center; /* Căn giữa các phần tử theo chiều ngang */
-    width:160px;
-}
-
-#book-foreign-list h2 {
-    font-size: 18px;
-}
-
-#book-foreign-list .book-foreign-name p {
-    margin-top: 12px;
-}
-
-#book-foreign-list .book-foreign-img{
-    width: 160px;
-    height:180px;
-    margin: 0 20px 12px 20px;
-
-}
-
-.more{
-    font-size: 20px;
-    text-align: center;
-    padding-top: 16px;
-}
-
-
