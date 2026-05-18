@@ -1,15 +1,30 @@
-const mysql = require('../config/mysql')
+const supabase = require('../config/db')
 
 const authModel = {
 
-    login: async (email, password) => {
-        try{
-            const sql = 'SELECT * FROM users WHERE email = ? AND password = ?'
-            const [rows] = await mysql.execute(sql, [email, password])
-            console.log('Kết quả đăng nhập:', rows)
-            return rows[0]
+    login: async (emailUser, password) => {
+        try {
+
+            const email = emailUser.trim().toLowerCase()
+
+            const { data: user, error } = await supabase
+                .from('users')
+                .select('*')
+                .eq('email', email)
+                .eq('password', password)
+                .single()
+
+            if (error || !user) {
+                console.log('Sai tài khoản hoặc mật khẩu')
+                return null
+            }
+
+            console.log('Đăng nhập thành công:', user)
+
+            return user
+
         } catch (error) {
-            console.error('lỗi đăng nhập:', error)
+            console.error('Lỗi đăng nhập:', error)
             throw error
         }
     },
@@ -20,12 +35,43 @@ const authModel = {
 
     register: async (fullname, password, email, phone) => {
         try {
-            const sql = 'INSERT INTO users (fullname, password, email, phone) VALUES (?, ?, ?, ?)'
-            const [result] = await mysql.execute(sql, [fullname, password, email, phone])
-            console.log('Kết quả đăng ký:', result)
-            return result.insertId
+
+            const emailLower = email.trim().toLowerCase()
+
+            const { data: existingUser } = await supabase
+                .from('users')
+                .select('*')
+                .eq('email', emailLower)
+                .single()
+
+            if (existingUser) {
+                console.log('Email đã tồn tại')
+                return null
+            }
+
+            const { data: user, error } = await supabase
+                .from('users')
+                .insert([
+                    {
+                        fullname,
+                        password,
+                        email: emailLower,
+                        phone
+                    }
+                ])
+                .select()
+
+            if (error) {
+                console.error('Lỗi đăng ký:', error)
+                return null
+            }
+
+            console.log('Đăng ký thành công:', user)
+
+            return user
+
         } catch (error) {
-            console.error('lỗi đăng ký:', error)
+            console.error('Lỗi đăng ký:', error)
             throw error
         }
     }
@@ -33,27 +79,15 @@ const authModel = {
 
 module.exports = authModel
 
-// authModel.login('testuser', 'password123')
-//     .then(user => {
-//         if (user) {
-//             console.log('Đăng nhập thành công:', user)
-//         } else {
-//             console.log('Đăng nhập thất bại')
-//         }
-//     })
-//     .catch(err => {
-//         console.error('lỗi đăng nhập:', err)
-//     })
 
 // authModel.register(
-//     'testuser',
+//     'hoangvu',
 //     'password123',
-//     'testuser@example.com',
+//     'vuker12345@gmail.com',
 //     '1234567890'
 // )
-// .then(userId => {
-//     console.log('User ID:', userId)
-// })
-// .catch(err => {
-//     console.error(err)
-// })
+
+// authModel.login(
+//     'vuker12345@gmail.com',
+//     'password123'
+// )
