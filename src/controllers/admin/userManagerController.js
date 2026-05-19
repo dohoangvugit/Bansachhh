@@ -1,6 +1,6 @@
-const adminModel = require('../models/adminModel')
+const adminModel = require('../../models/adminModel')
 
-const adminController = {
+const userManagerController = {
 
     getAllUsers: async (req, res) => {
         try {
@@ -66,4 +66,4 @@ const adminController = {
     }
 }
 
-module.exports = adminController
+module.exports = userManagerController
