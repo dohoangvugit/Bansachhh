@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa hàng sách của Dung cute vcllll</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+    <div class="container">
+        {{> sidebar}}
+        <main class="main">
+            {{{body}}}
+        </main>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#userTable').DataTable({
+            pageLength: 5,
+            language: {
+                lengthMenu: "Hiển thị _MENU_ tài khoản",
+                search: "Tìm kiếm:",
+                info: "Hiển thị _START_ đến _END_ trong _TOTAL_ tài khoản",
+                paginate: {
+                    previous: "Trước",
+                    next: "Sau"
+                },
+                zeroRecords: "Không tìm thấy dữ liệu"
+            }
+        });
+    });
+</script>
+</body>
+</html>

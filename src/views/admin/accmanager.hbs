@@ -1,0 +1,49 @@
+<div class="topbar">
+    Quản lý tài khoản
+</div>
+
+<div class="content">
+    <div class="card">
+        <h2 class="title">Danh sách tài khoản</h2>
+        <table id="userTable" class="display">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>SDT</th>
+                    <th>Mật khẩu</th>
+                    <th>Quyền</th>
+                    <th>Tác vụ</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each users}}
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>{{this.fullname}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.phone}}</td>
+                    <td>{{this.password}}</td>
+                    <td>{{this.role}}</td>
+
+                    <td>
+                        <div class="action-buttons">
+                            <a href="/admin/edit/{{this.id}}" class="btn btn-edit" title="Sửa">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+
+                            <a href="/admin/delete/{{this.id}}" class="btn btn-delete" title="Xóa"
+                            onclick="return confirm('Xóa tài khoản này?')">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+
+        </table>
+    </div>
+</div>

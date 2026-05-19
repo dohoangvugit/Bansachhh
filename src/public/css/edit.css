@@ -1,0 +1,83 @@
+.admin-form {
+    max-width: 700px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+.admin-form .form-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.admin-form .card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.admin-form .card-body {
+    padding: 20px;
+}
+
+.admin-form .form-group {
+    margin-bottom: 15px;
+}
+
+.admin-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.admin-form input,
+.admin-form select,
+.admin-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.admin-form input:focus,
+.admin-form select:focus,
+.admin-form textarea:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13,110,253,0.2);
+}
+
+.admin-form .form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.admin-form .btn-primary {
+    background: #0d6efd;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.admin-form .btn-primary:hover {
+    background: #0b5ed7;
+}
+
+.admin-form .btn-secondary {
+    background: #6c757d;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.admin-form .btn-secondary:hover {
+    background: #5c636a;
+}

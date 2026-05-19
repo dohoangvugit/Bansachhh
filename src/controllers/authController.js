@@ -23,6 +23,13 @@ const authController = {
                 return res.status(401).json({ message: "login failed" })
             }
 
+            if(user.role === 'Admin') {
+                return res.redirect('/admin')
+            }
+            else if(user.role === 'Client') {
+                return res.redirect('/client')
+            }
+
             return res.status(200).json({ message: "login success", user })
 
         } catch (error) {
