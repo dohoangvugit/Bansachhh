@@ -23,10 +23,10 @@ const authController = {
                 return res.status(401).json({ message: "login failed" })
             }
 
-            if(user.role === 'Admin') {
+            if(user.role === 'admin') {
                 return res.redirect('/admin')
             }
-            else if(user.role === 'Client') {
+            else if(user.role === 'client') {
                 return res.redirect('/client')
             }
 
@@ -51,6 +51,10 @@ const authController = {
             console.error(error)
             return res.status(500).json({ message: 'Server error' })
         }
+    },
+
+    logout: (req, res) => {
+        return res.redirect('/auth?mode=login')
     }
 }
 
