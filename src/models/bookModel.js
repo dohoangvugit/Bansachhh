@@ -87,7 +87,6 @@ const bookModel = {
             const { data: books, error } = await supabase
                 .from('books')
                 .select('*')
-                .order('created_at', { ascending: false })
 
             if (error) {
                 console.error('Lỗi lấy danh sách sách:', error)
@@ -147,25 +146,29 @@ const bookModel = {
 
     update: async (id, bookData, file) => {
         try {
-            let updatedBookData = { ...bookData };
+            const { id: _, ...cleanBookData } = bookData;
+            let updatedBookData = { ...cleanBookData };
 
             if (file) {
                 const newImageUrl = await bookModel.uploadImage(
                     file.buffer,
                     file.originalname,
                     file.mimetype
-                );
+                )
 
                 if (!newImageUrl) {
-                    console.error('Không thể upload ảnh mới, hủy cập nhật sách');
-                    return null;
+                    console.error('Không thể upload ảnh mới, hủy cập nhật sách')
+                    return null
                 }
 
-                updatedBookData.image_url = newImageUrl;
+                updatedBookData.image_url = newImageUrl
             }
 
             if (updatedBookData.price) {
-                updatedBookData.price = parseFloat(updatedBookData.price);
+                updatedBookData.price = parseFloat(updatedBookData.price)
+            }
+            if (updatedBookData.stock) {
+                updatedBookData.stock = parseInt(updatedBookData.stock, 10)
             }
 
             const { data, error } = await supabase
@@ -173,10 +176,9 @@ const bookModel = {
                 .update(updatedBookData)
                 .eq('id', id)
                 .select()
-                .single();
 
             if (error) {
-                console.error('Lỗi cập nhật sách:', error)
+                console.error('Lỗi cập nhật sách tại Supabase:', error)
                 return null
             }
 
@@ -191,6 +193,10 @@ const bookModel = {
 }
 
 module.exports = bookModel
+
+// bookModel.getAll()
+// .then(books => console.log("Danh sách sách:", books))
+// .catch(error => console.error("Lỗi:", error));
 
 // bookModel.update(
 //     1,

@@ -1,0 +1,63 @@
+<div class="topbar">Quản lý sách
+</div>
+
+<div class="content">
+    <div class="card">
+        <h2 class="title">Danh sách sách</h2>
+        <a href="/admin/add" class="btn-add">
+            <i class="fa-solid fa-plus"></i> Thêm sách mới
+        </a>
+        <table id="bookTable" class="display">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên</th>
+                    <th>Thể loại</th>
+                    <th> Giá</th>
+                    <th>Ảnh</th>
+                    <th>Số lượng</th>
+                    <th>Mô tả</th>
+                    <th>Tác giả</th>
+                    <th>Tác vụ</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each books}}
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>{{this.title}}</td>
+                    <td>{{this.genre}}</td>
+                    <td>{{this.price}}</td>
+                    <td>
+                        <img 
+                            src="{{this.image_url}}" 
+                            alt="{{this.title}}"
+                            width="80"
+                            height="100"
+                            style="object-fit: cover; border-radius: 6px;"
+                        >
+                    </td>
+                    <td>{{this.stock}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{this.author}}</td>
+
+                    <td>
+                        <div class="action-buttons">
+                            <a href="/admin/book/edit/{{this.id}}" class="btn btn-edit">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+
+                            <a href="/admin/book/delete/{{this.id}}" class="btn btn-delete" title="Xóa"
+                            onclick="return confirm('Xóa sách này?')">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+
+        </table>
+    </div>
+</div>
