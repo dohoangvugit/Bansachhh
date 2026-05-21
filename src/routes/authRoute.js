@@ -12,4 +12,6 @@ router.get('/admin', (req, res) => {
     res.render('admin/accmanager', { layout: 'admin'})
 })
 
+
+
 module.exports = router

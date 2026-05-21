@@ -27,7 +27,7 @@ const authController = {
                 return res.redirect('/admin')
             }
             else if(user.role === 'client') {
-                return res.redirect('/client')
+                return res.redirect('/')
             }
 
             return res.status(200).json({ message: "login success", user })
