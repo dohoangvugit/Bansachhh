@@ -1,0 +1,129 @@
+<link rel="stylesheet" href="/css/details.css">
+
+<div id="content" class="details-page">
+
+    <div class="container-book">
+
+        <div class="book-img-wrapper">
+            <img
+                src="{{book.image_url}}"
+                alt="{{book.title}}"
+                class="img-main"
+            >
+        </div>
+
+        <div class="book-pay">
+
+            <h2 class="book-main-title">
+                {{book.title}}
+            </h2>
+
+            <p class="price">
+                Giá: {{formatPrice book.price}} VND
+            </p>
+
+            <div class="quantity-wrapper">
+                <span>Tình trạng:</span>
+
+                <span class="status">
+                    {{book.stock}}
+                </span>
+            </div>
+
+            <form
+                method="POST"
+                action="/cart/add/{{book.id}}"
+                class="purchase-form"
+            >
+
+                <div class="input-group">
+                    <label for="quantity">Số lượng:</label>
+
+                    <input
+                        type="number"
+                        name="quantity"
+                        id="quantity"
+                        value="1"
+                        min="1"
+                    >
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn-add-cart"
+                >
+                    Thêm vào giỏ hàng
+                </button>
+
+            </form>
+
+            <div class="i4-pro">
+
+                <p class="i4-title">
+                    Thông tin & Khuyến mãi
+                </p>
+
+                <ul>
+                    <li>Đổi trả trong vòng 7 ngày</li>
+                    <li>Freeship toàn quốc</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="info-container">
+
+            <h2>THÔNG TIN CHI TIẾT</h2>
+
+            <div class="info-item">
+                <span>Nhà xuất bản:</span>
+                <strong>{{book.publisher}}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Ngày xuất bản:</span>
+                <strong>{{book.publication_date}}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Tác giả:</span>
+                <strong>{{book.author}}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Kích thước:</span>
+                <strong>{{book.size}}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Số trang:</span>
+                <strong>{{book.page_count}} trang</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Trọng lượng:</span>
+                <strong>{{book.weight}} gram</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="container-book-i4">
+
+        <div class="book-i4">
+            Giới thiệu sản phẩm
+        </div>
+
+        <h2 class="intro-book-title">
+            {{book.title}}
+        </h2>
+
+        <p class="book-description">
+            {{book.description}}
+        </p>
+
+    </div>
+
+</div>

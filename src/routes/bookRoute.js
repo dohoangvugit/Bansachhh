@@ -3,7 +3,6 @@ const router = express.Router()
 
 const bookController = require('../controllers/bookController')
 
-// router.get('/', bookController.homePage)
-
+router.get('/books/:id', bookController.detail)
 
 module.exports = router
