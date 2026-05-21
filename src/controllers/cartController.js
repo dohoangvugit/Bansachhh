@@ -22,7 +22,7 @@ const cartController = {
             cart.push({
                 id,
                 title,
-                price: Number(price.replace(/\./g, '')),
+                price: Number(String(price).replace(/[^\d]/g, '')),
                 image_url,
                 quantity: Number(quantity || 1)
             })
@@ -44,8 +44,9 @@ const cartController = {
 
         return res.render('cart', {
             cart,
-            totalPrice
+            totalPrice: Number(totalPrice)
         })
+        console.log("TOTAL PRICE CART:", totalPrice)
     },
 
     remove: (req, res) => {

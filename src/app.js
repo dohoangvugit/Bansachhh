@@ -3,8 +3,9 @@ const app = express()
 const port = 3000
 const { engine } = require('express-handlebars')
 const path = require('path')
+const cookieParser = require('cookie-parser')
+app.use(cookieParser())
 const route = require('./routes/index')
-
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))

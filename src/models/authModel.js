@@ -74,6 +74,27 @@ const authModel = {
             console.error('Lỗi đăng ký:', error)
             throw error
         }
+    },
+
+    getUserById: async (userId) => {
+        try {
+            const { data: user, error } = await supabase
+                .from('users')
+                .select('*')
+                .eq('id', userId)
+                .single()
+
+            if (error) {
+                console.error('Lỗi lấy user:', error)
+                return null
+            }
+
+            return user
+
+        } catch (error) {
+            console.error('Lỗi lấy user:', error)
+            throw error
+        }
     }
 }
 

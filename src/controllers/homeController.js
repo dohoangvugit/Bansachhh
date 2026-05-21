@@ -28,7 +28,8 @@ const homeController = {
                 vietnamBooks,
                 foreignBooks,
                 textbooks,
-                horrorBooks
+                horrorBooks,
+                success: req.query.order === 'success'
             })
         } catch (err) {
             console.error(err)

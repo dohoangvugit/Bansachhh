@@ -23,6 +23,11 @@ const authController = {
                 return res.status(401).json({ message: "login failed" })
             }
 
+            res.cookie('userId', user.id, {
+                httpOnly: true,
+                maxAge: 24 * 60 * 60 * 1000
+            })
+
             if(user.role === 'admin') {
                 return res.redirect('/admin')
             }
@@ -54,6 +59,7 @@ const authController = {
     },
 
     logout: (req, res) => {
+        res.clearCookie('userId')
         return res.redirect('/auth?mode=login')
     }
 }
