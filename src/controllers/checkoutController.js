@@ -42,7 +42,6 @@ const checkoutController = {
 
             const address = req.body.address
             const totalPrice = parseInt(req.query.totalPrice) || 0
-            console.log("CHECKOUT QUERY:", req.query)
             if (!address || !totalPrice) {
                 return res.status(400).send('Thiếu dữ liệu')
             }

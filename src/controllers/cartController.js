@@ -46,7 +46,6 @@ const cartController = {
             cart,
             totalPrice: Number(totalPrice)
         })
-        console.log("TOTAL PRICE CART:", totalPrice)
     },
 
     remove: (req, res) => {
