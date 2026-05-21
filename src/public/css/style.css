@@ -69,32 +69,37 @@ body{
 
 .user-menu{
     position:relative;
+    z-index:1001;
 }
 
 .user-avatar{
-    width:42px;
-    height:42px;
+    width:52px;
+    height:52px;
+    min-width:52px;
+    min-height:52px;
     background:#fff;
     border-radius:50%;
     display:flex;
     align-items:center;
     justify-content:center;
     cursor:pointer;
-    transition:0.3s;
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+    padding:4px;
 }
 
 .user-avatar:hover{
-    transform:scale(1.05);
+    transform:scale(1.06);
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
 }
 
 .user-avatar i{
-    font-size:20px;
+    font-size:24px;
     color:#fd501b;
 }
 
 .dropdown{
     position:absolute;
-    top:55px;
+    top:64px;
     right:0;
     width:220px;
     background:#fff;
@@ -120,7 +125,8 @@ body{
     color:#fd501b;
 }
 
-.user-menu:hover .dropdown{
+.user-menu:hover .dropdown,
+.user-menu.open .dropdown{
     display:block;
 }
 
