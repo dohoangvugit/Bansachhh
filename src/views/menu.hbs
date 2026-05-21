@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="/css/menu.css">
+<div id="main">
+    <div id="content">
+        <div id="menu">
+            <div id="content-menu">
+                <ul>
+                    <li>
+                        <i class="ti-menu"></i>
+                        Danh mục sản phẩm
+                        <i class="fa-solid fa-caret-down"></i>
+                        <ul id="sub-menu">
+                            <li>
+                                <a href="/menu/menucomic">
+                                    Truyện tranh
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/menu/menusachvn">
+                                    Sách Việt Nam
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/menu/menusachnn">
+                                    Sách Nước Ngoài
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/menu/sachgiaokhoa">
+                                    Sách Giáo Khoa
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/menu/truyenkinhdi">
+                                    Truyện Kinh Dị
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="book-type">
+
+            <a href="/">Trang chủ</a>/
+            <a href="">
+                {{genre}}
+            </a>
+        </div>
+
+        <div id="comic-list">
+
+            {{#each books}}
+                <div class="comic-name">
+                    <a href="/books/{{id}}">
+                        <img
+                            src="{{image_url}}"
+                            alt="{{title}}"
+                            class="comic-img"
+                        >
+                        <h2>
+                            {{title}}
+                        </h2>
+                    </a>
+                    <p>
+                        Giá:
+                        {{formatPrice price}}
+                        VND
+                        <i
+                            class="fa-solid fa-dong-sign fa-sm"
+                            style="color: #ff0000;"
+                        ></i>
+                    </p>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

@@ -189,7 +189,28 @@ const bookModel = {
             console.error('Lỗi cập nhật sách:', error)
             throw error
         }
-    }
+    },
+
+    getMenuByGenre: async (genre) => {
+        try {
+
+            const { data: books, error } = await supabase
+                .from('books')
+                .select('*')
+                .eq('genre', genre)
+
+            if (error) {
+                console.error('Lỗi lấy sách theo thể loại:', error)
+                return null
+            }
+
+            return books
+
+        } catch (error) {
+            console.error('Lỗi lấy sách theo thể loại:', error)
+            throw error
+        }
+    },
 }
 
 module.exports = bookModel

@@ -3,11 +3,14 @@ const adminRoute = require('./adminRoute')
 const bookRoute = require('./bookRoute')
 const homeRoute = require('./homeRoute')
 const cartRoute = require('./carRoute')
+const menuRoute = require('./menuRoute')
+
 function route (app){
     
     app.use('/admin', adminRoute)
     app.use('/auth', authRoute)
     app.use('/cart', cartRoute)
+    app.use('/menu', menuRoute)
     app.use('/', homeRoute)
     app.use('/', bookRoute)
 }
