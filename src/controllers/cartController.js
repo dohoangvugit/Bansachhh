@@ -1,68 +1,85 @@
-const cart = []
+const cartModel = require('../models/cartModel')
+const authModel = require('../models/authModel')
 
 const cartController = {
+    index: async (req, res) => {
+        try {
+            const userId = req.cookies.userId
 
-    addToCart: (req, res) => {
+            if (!userId) {
+                return res.redirect('/auth?mode=login')
+            }
 
-        const {
-            id,
-            title,
-            price,
-            image_url,
-            quantity
-        } = req.body
+            const user = await authModel.getUserById(userId)
+            if (!user) {
+                return res.redirect('/auth?mode=login')
+            }
 
-        const existingBook = cart.find(
-            item => item.id == id
-        )
+            let cart = await cartModel.getCartByUserId(userId)
 
-        if (existingBook) {
-            existingBook.quantity += Number(quantity)
-        } else {
-            cart.push({
-                id,
-                title,
-                price: Number(String(price).replace(/[^\d]/g, '')),
-                image_url,
-                quantity: Number(quantity || 1)
+            if (!cart) {
+                cart = await cartModel.createCart(userId)
+            }
+
+            const items = await cartModel.getCartItems(cart.id)
+
+            const totalPrice = await cartModel.getTotalPrice(cart.id)
+
+            return res.render('cart', {
+                cart: items,
+                totalPrice
             })
+
+        } catch (error) {
+            console.error('Cart index error:', error)
+            return res.status(500).send('Lỗi server')
         }
-        console.log(cart)
-        return res.redirect('/cart')
     },
 
-    index: (req, res) => {
-        let totalPrice = 0
+    addToCart: async (req, res) => {
+        try {
+            const userId = req.cookies.userId
 
-        cart.forEach(item => {
+            if (!userId) {
+                return res.redirect('/auth?mode=login')
+            }
 
-            const price = Number(item.price) || 0
-            const quantity = Number(item.quantity) || 0
+            const { id, price, quantity } = req.body
 
-            totalPrice += price * quantity
-        })
+            let cart = await cartModel.getCartByUserId(userId)
 
-        return res.render('cart', {
-            cart,
-            totalPrice: Number(totalPrice)
-        })
+            if (!cart) {
+                cart = await cartModel.createCart(userId)
+            }
+
+            await cartModel.addItem(cart.id, {
+                book_id: id,
+                price: Number(String(price).replace(/[^\d]/g, '')),
+                quantity: Number(quantity || 1),
+                image_url: req.body.image_url
+            })
+
+            return res.redirect('/cart')
+
+        } catch (error) {
+            console.error('Add cart error:', error)
+            return res.status(500).send('Lỗi server')
+        }
     },
 
-    remove: (req, res) => {
+    remove: async (req, res) => {
+        try {
+            const itemId = req.params.id
 
-        const id = req.params.id
+            await cartModel.removeItem(itemId)
 
-        const index = cart.findIndex(
-            item => item.id == id
-        )
+            return res.redirect('/cart')
 
-        if (index !== -1) {
-            cart.splice(index, 1)
+        } catch (error) {
+            console.error('Remove cart error:', error)
+            return res.status(500).send('Lỗi server')
         }
-
-        return res.redirect('/cart')
     }
-    
 }
 
 module.exports = cartController
