@@ -14,18 +14,18 @@
     </div>
 
     {{#if comics}}
-        <div id="comic">
-            <h2 id="h-comic">Truyện tranh</h2>
+        <div class="book-section">
+            <h2>Truyện Tranh</h2>
         </div>
 
         <div class="padding"></div>
 
-        <div id="comic-list">
+        <div class="book-list">
             {{#each comics}}
-                <div class="comic-name">
+                <div class="book-item">
                     <a href="/books/{{id}}">
-                        <img src="{{image_url}}" alt="{{title}}" class="comic-img">
-                        <h2>{{title}}</h2>
+                        <img src="{{image_url}}" alt="{{title}}" class="book-img">
+                        <h3>{{title}}</h3>
                     </a>
 
                     <p>Giá: {{formatPrice price}} VND</p>
@@ -39,18 +39,18 @@
     {{/if}}
 
     {{#if vietnamBooks}}
-        <div id="bookVN">
-            <h2 id="h-bookVN">Sách Việt Nam</h2>
+        <div class="book-section">
+            <h2>Sách Việt Nam</h2>
         </div>
 
         <div class="padding"></div>
 
-        <div id="bookVN-list">
+        <div class="book-list">
             {{#each vietnamBooks}}
-                <div class="bookVN-name">
+                <div class="book-item">
                     <a href="/books/{{id}}">
-                        <img src="{{image_url}}" alt="{{title}}" class="bookVN-img">
-                        <h2>{{title}}</h2>
+                        <img src="{{image_url}}" alt="{{title}}" class="book-img">
+                        <h3>{{title}}</h3>
                     </a>
 
                     <p>Giá: {{formatPrice price}} VND</p>
@@ -64,18 +64,18 @@
     {{/if}}
 
     {{#if foreignBooks}}
-        <div id="book-foreign">
-            <h2 id="h-book-foreign">Sách nước ngoài</h2>
+        <div class="book-section">
+            <h2>Sách Nước Ngoài</h2>
         </div>
 
         <div class="padding"></div>
 
-        <div id="book-foreign-list">
+        <div class="book-list">
             {{#each foreignBooks}}
-                <div class="book-foreign-name">
+                <div class="book-item">
                     <a href="/books/{{id}}">
-                        <img src="{{image_url}}" alt="{{title}}" class="book-foreign-img">
-                        <h2>{{title}}</h2>
+                        <img src="{{image_url}}" alt="{{title}}" class="book-img">
+                        <h3>{{title}}</h3>
                     </a>
 
                     <p>Giá: {{formatPrice price}} VND</p>
@@ -84,7 +84,57 @@
         </div>
 
         <div class="more">
-            <a href="/menu/menusachnuocngoai">Xem thêm</a>
+            <a href="/menu/menusachnn">Xem thêm</a>
+        </div>
+    {{/if}}
+
+    {{#if textbooks}}
+        <div class="book-section">
+            <h2>Sách Giáo Khoa</h2>
+        </div>
+
+        <div class="padding"></div>
+
+        <div class="book-list">
+            {{#each textbooks}}
+                <div class="book-item">
+                    <a href="/books/{{id}}">
+                        <img src="{{image_url}}" alt="{{title}}" class="book-img">
+                        <h3>{{title}}</h3>
+                    </a>
+
+                    <p>Giá: {{formatPrice price}} VND</p>
+                </div>
+            {{/each}}
+        </div>
+
+        <div class="more">
+            <a href="/menu/sachgiaokhoa">Xem thêm</a>
+        </div>
+    {{/if}}
+
+    {{#if horrorBooks}}
+        <div class="book-section">
+            <h2>Truyện Kinh Dị</h2>
+        </div>
+
+        <div class="padding"></div>
+
+        <div class="book-list">
+            {{#each horrorBooks}}
+                <div class="book-item">
+                    <a href="/books/{{id}}">
+                        <img src="{{image_url}}" alt="{{title}}" class="book-img">
+                        <h3>{{title}}</h3>
+                    </a>
+
+                    <p>Giá: {{formatPrice price}} VND</p>
+                </div>
+            {{/each}}
+        </div>
+
+        <div class="more">
+            <a href="/menu/truyenkinhdi">Xem thêm</a>
         </div>
     {{/if}}
 </div>
