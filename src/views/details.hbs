@@ -30,11 +30,15 @@
                 </span>
             </div>
 
-            <form
-                method="POST"
-                action="/cart/add/{{book.id}}"
-                class="purchase-form"
-            >
+            <form method="POST" action="/cart/add" class="purchase-form">
+
+                <input type="hidden" name="id" value="{{book.id}}">
+
+                <input type="hidden" name="title" value="{{book.title}}">
+
+                <input type="hidden" name="price" value="{{book.price}}">
+
+                <input type="hidden" name="image_url" value="{{book.image_url}}">
 
                 <div class="input-group">
                     <label for="quantity">Số lượng:</label>

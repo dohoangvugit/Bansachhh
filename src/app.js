@@ -22,9 +22,17 @@ app.engine(
         helpers: {
             json: (x) => JSON.stringify(x),
             eq: (a, b) => a === b,
-            formatPrice: (v) => v.toLocaleString(),
-            multiply: (a,b) => a*b,
-        },
+            formatPrice: (v) => {
+                return Number(v || 0).toLocaleString('vi-VN')
+            },
+            multiply: (a, b) => {
+                return Number(a || 0) * Number(b || 0)
+            },
+            totalPrice: (price, quantity) => {
+                return Number(price || 0) * Number(quantity || 0)
+            }
+
+        }
     }),
 )
 app.set('view engine', '.hbs');

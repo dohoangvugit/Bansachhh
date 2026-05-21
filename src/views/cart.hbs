@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="/css/cart.css">
+<div class="cart-container">
+
+    <h1>Giỏ hàng của bạn</h1>
+
+    {{#if cart.length}}
+
+        <table class="cart-table">
+
+            <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Ảnh</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {{#each cart}}
+
+                    <tr>
+
+                        <td>{{title}}</td>
+
+                        <td>
+                            <img
+                                src="{{image_url}}"
+                                class="cart-img"
+                            >
+                        </td>
+
+                        <td>
+                            {{formatPrice price}} VND
+                        </td>
+
+                        <td>
+                            {{quantity}}
+                        </td>
+
+                        <td>
+                            {{formatPrice (multiply price quantity)}} <VND></VND>
+                        </td>
+
+                        <td>
+                            <a
+                                href="/cart/remove/{{id}}"
+                                class="remove-btn"
+                            >
+                                Xóa
+                            </a>
+                        </td>
+
+                    </tr>
+
+                {{/each}}
+
+            </tbody>
+
+        </table>
+
+        <div class="cart-total">
+
+            <h2>
+                Tổng tiền:
+                {{formatPrice totalPrice}} VND
+            </h2>
+
+            <a
+                href="/checkout"
+                class="checkout-btn"
+            >
+                Thanh toán
+            </a>
+
+        </div>
+
+    {{else}}
+
+        <div class="empty-cart">
+
+            <h2>Giỏ hàng đang trống</h2>
+
+            <a
+                href="/"
+                class="continue-shopping"
+            >
+                Tiếp tục mua hàng
+            </a>
+
+        </div>
+
+    {{/if}}
+
+</div>
