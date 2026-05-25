@@ -6,7 +6,7 @@ const cartModel = {
             .from('carts')
             .select('*')
             .eq('user_id', userId)
-            .single()
+            .maybeSingle()
 
         if (error && error.code !== 'PGRST116') {
             console.error('Lỗi get cart:', error)
@@ -21,7 +21,7 @@ const cartModel = {
             .from('carts')
             .insert([{ user_id: userId }])
             .select()
-            .single()
+            .maybeSingle()
 
         if (error) {
             console.error('Lỗi tạo cart:', error)
@@ -56,52 +56,72 @@ const cartModel = {
 
     addItem: async (cartId, book) => {
 
-        const { book_id, price, quantity } = book
+        try {
 
-        const { data: existing, error: findError } = await supabase
-            .from('cart_items')
-            .select('*')
-            .eq('cart_id', cartId)
-            .eq('book_id', book_id)
-            .maybeSingle()
+            const { book_id, price, quantity } = book
 
-        if (findError) {
-            console.error('Find item error:', findError)
-        }
+            console.log({
+                cartId,
+                book_id,
+                price,
+                quantity
+            })
 
-        if (existing) {
+            const { data: existing, error: findError } = await supabase
+                .from('cart_items')
+                .select('*')
+                .eq('cart_id', cartId)
+                .eq('book_id', Number(book_id))
+                .maybeSingle()
+
+            if (findError) {
+                console.error('Find item error:', findError)
+                return null
+            }
+
+            if (existing) {
+
+                const { data, error } = await supabase
+                    .from('cart_items')
+                    .update({
+                        quantity: existing.quantity + Number(quantity)
+                    })
+                    .eq('id', existing.id)
+                    .select()
+
+                if (error) {
+                    console.error('Update cart item error:', error)
+                    return null
+                }
+
+                return data?.[0] || null
+            }
+
             const { data, error } = await supabase
                 .from('cart_items')
-                .update({
-                    quantity: existing.quantity + quantity
-                })
-                .eq('id', existing.id)
+                .insert([
+                    {
+                        cart_id: Number(cartId),
+                        book_id: Number(book_id),
+                        price: Number(price),
+                        quantity: Number(quantity)
+                    }
+                ])
                 .select()
 
+            console.log('INSERT RESULT:', data)
+
             if (error) {
-                console.error('Update cart item error:', error)
+                console.error('Add cart item error:', error)
                 return null
             }
 
             return data?.[0] || null
-        }
 
-        const { data, error } = await supabase
-            .from('cart_items')
-            .insert([{
-                cart_id: cartId,
-                book_id,
-                price,
-                quantity
-            }])
-            .select()
-
-        if (error) {
-            console.error('Add cart item error:', error)
+        } catch (err) {
+            console.error('addItem crash:', err)
             return null
         }
-
-        return data?.[0] || null
     },
 
     removeItem: async (itemId) => {

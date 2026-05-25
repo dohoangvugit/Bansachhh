@@ -1,0 +1,56 @@
+<div class="topbar">Quản lý đơn hàng
+</div>
+
+<div class="content">
+    <div class="card">
+        <h2 class="title">Danh sách đơn hàng</h2>
+        <table id="orderTable" class="display">
+            <thead>
+                <tr>
+                    <th>ID Đơn</th>
+                    <th>Khách hàng</th>
+                    <th>Tổng tiền</th>
+                    <th>Ngày đặt</th>
+                    <th>Địa chỉ giao hàng</th>
+                    <th>Tác vụ</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each orders}}
+                <tr>
+                    <td>#{{this.id}}</td>
+                    
+                    <td>
+                        {{#if this.users.fullname}}
+                            {{this.users.fullname}}
+                        {{else}}
+                            Khách hàng #{{this.user_id}}
+                        {{/if}}
+                    </td> 
+                    
+                    <td style="font-weight: bold; color: #dc2626;">{{this.total_price}} đ</td>
+                    
+                    <td>{{this.created_at}}</td>
+                    
+                    <td>{{this.address}}</td>
+
+                    <td>
+                        <div class="action-buttons">
+                            <a href="/admin/order/detail/{{this.id}}" class="btn btn-edit" title="Xem chi tiết">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+
+                            <a href="/admin/order/delete/{{this.id}}" class="btn btn-delete" title="Xóa đơn hàng"
+                            onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này?')">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+
+        </table>
+    </div>
+</div>

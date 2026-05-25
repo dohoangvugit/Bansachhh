@@ -55,6 +55,22 @@ $(document).ready(function () {
         });
     }
 
+    if ($('#orderTable').length){
+        $('#orderTable').DataTable({
+            pageLength: 5,
+            language: {
+                lengthMenu: "Hiển thị _MENU_ đơn hàng",
+                search: "Tìm kiếm:",
+                info: "Hiển thị _START_ đến _END_ trong _TOTAL_ đơn hàng",
+                paginate: {
+                    previous: "Trước",
+                    next: "Sau"
+                },
+                zeroRecords: "Không tìm thấy dữ liệu"
+            }
+        });
+    }
+
 });
 </script>
 </body>

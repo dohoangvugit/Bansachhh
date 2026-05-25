@@ -1,8 +1,10 @@
+const supabase = require('../config/db')
 const cartModel = require('../models/cartModel')
 const authModel = require('../models/authModel')
 const orderModel = require('../models/orderModel')
 
 const checkoutController = {
+
     getCheckOutPage: async (req, res) => {
         try {
             const userId = req.cookies.userId
@@ -16,8 +18,7 @@ const checkoutController = {
                 return res.redirect('/auth?mode=login')
             }
 
-            let cart = await cartModel.getCartByUserId(userId)
-
+            const cart = await cartModel.getCartByUserId(userId)
             if (!cart) {
                 return res.redirect('/cart')
             }
@@ -35,6 +36,7 @@ const checkoutController = {
         }
     },
 
+
     postCheckOut: async (req, res) => {
         try {
             const userId = req.cookies.userId
@@ -49,18 +51,17 @@ const checkoutController = {
             }
 
             const cart = await cartModel.getCartByUserId(userId)
-
             if (!cart) {
                 return res.redirect('/cart')
             }
 
             const items = await cartModel.getCartItems(cart.id)
 
-            const totalPrice = await cartModel.getTotalPrice(cart.id)
-
-            if (items.length === 0) {
+            if (!items || items.length === 0) {
                 return res.redirect('/cart')
             }
+
+            const totalPrice = await cartModel.getTotalPrice(cart.id)
 
             const order = await orderModel.createOrder(
                 userId,
@@ -72,8 +73,29 @@ const checkoutController = {
                 return res.status(500).send('Không tạo được order')
             }
 
-            for (let item of items) {
-                await cartModel.removeItem(item.id)
+            const orderItems = items.map(item => ({
+                order_id: order.id,
+                book_id: item.book_id,
+                price: item.price,
+                quantity: item.quantity
+            }))
+
+            const { error: orderItemError } = await supabase
+                .from('order_items')
+                .insert(orderItems)
+
+            if (orderItemError) {
+                console.error('Order items error:', orderItemError)
+                return res.status(500).send('Không tạo được order items')
+            }
+
+            const { error: clearError } = await supabase
+                .from('cart_items')
+                .delete()
+                .eq('cart_id', cart.id)
+
+            if (clearError) {
+                console.error('Clear cart error:', clearError)
             }
 
             return res.redirect('/?order=success')
