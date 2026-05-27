@@ -1,0 +1,82 @@
+<div class="topbar">Chi tiết đơn hàng</div>
+
+<div class="content">
+    <div class="card">
+
+        <div class="detail-header">
+            <h2 class="title">Thông tin đơn hàng</h2>
+        </div>
+
+        <div class="order-info">
+            <div class="info-box">
+                <p><strong>ID đơn:</strong> #{{order.id}}</p>
+
+                <p>
+                    <strong>Khách hàng:</strong>
+
+                    {{#if order.users.fullname}}
+                        {{order.users.fullname}}
+                    {{else}}
+                        Khách hàng #{{order.user_id}}
+                    {{/if}}
+                </p>
+
+                <p>
+                    <strong>Tổng tiền:</strong>
+                    <span class="price">{{order.total_price}} đ</span>
+                </p>
+
+                <p><strong>Ngày đặt:</strong> {{order.created_at}}</p>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Địa chỉ giao hàng:</strong></p>
+
+                <div class="address-box">
+                    {{order.address}}
+                </div>
+            </div>
+        </div>
+
+        <div class="product-section">
+            <h3 class="section-title">Danh sách sản phẩm</h3>
+
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                        <th>Tổng</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each orderDetails}}
+                    <tr>
+
+                        <td>{{this.books.title}}</td>
+
+                        <td>{{this.quantity}}</td>
+
+                        <td>{{this.price}} đ</td>
+
+                        <td class="total-cell">
+                            {{multiply this.price this.quantity}} đ
+                        </td>
+
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bottom-actions">
+            <a href="/admin/ordermanager" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i>
+                Quay lại
+            </a>
+        </div>
+
+    </div>
+</div>
