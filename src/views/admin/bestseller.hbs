@@ -1,0 +1,79 @@
+<section class="content">
+    <div class="card">
+        <div class="table-header">
+            <h2 class="title">Top 10 sách bán chạy</h2>
+        </div>
+        <div class="chart-wrapper">
+            <canvas id="bestsellerChart"></canvas>
+        </div>
+    </div>
+
+    <div class="card mt-15">
+        <div class="section-title">Chi tiết sách bán chạy</div>
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Hạng</th>
+                    <th>Tên sách</th>
+                    <th>Số lượng đã bán</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each bestSellers}}
+                <tr>
+                    <td>{{increment @index}}</td>
+                    <td>{{title}}</td>
+                    <td>{{quantity}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const labels = {{{json labels}}}
+const values = {{{json values}}}
+const ctx = document.getElementById('bestsellerChart').getContext('2d')
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels,
+        datasets: [
+            {
+                label: 'Số lượng đã bán',
+                data: values,
+                backgroundColor: 'rgba(54, 162, 235, 0.75)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+                borderRadius: 8,
+                maxBarThickness: 40
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    precision: 0
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top'
+            },
+            title: {
+                display: true,
+                text: 'Top 10 sách bán chạy'
+            }
+        }
+    }
+})
+</script>

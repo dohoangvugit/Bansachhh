@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     if ($('#userTable').length) {
         $('#userTable').DataTable({
-            pageLength: 5,
+            pageLength: 10,
             language: {
                 lengthMenu: "Hiển thị _MENU_ tài khoản",
                 search: "Tìm kiếm:",
@@ -41,7 +41,7 @@ $(document).ready(function () {
 
     if ($('#bookTable').length) {
         $('#bookTable').DataTable({
-            pageLength: 5,
+            pageLength: 7,
             language: {
                 lengthMenu: "Hiển thị _MENU_ sách",
                 search: "Tìm kiếm:",
@@ -57,7 +57,7 @@ $(document).ready(function () {
 
     if ($('#orderTable').length){
         $('#orderTable').DataTable({
-            pageLength: 5,
+            pageLength: 10,
             language: {
                 lengthMenu: "Hiển thị _MENU_ đơn hàng",
                 search: "Tìm kiếm:",
@@ -72,6 +72,18 @@ $(document).ready(function () {
     }
 
 });
+</script>
+
+<script>
+    function toggleDropdown() {
+        const dropdown = document.getElementById("statisticsDropdown");
+
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
 </script>
 </body>
 </html>

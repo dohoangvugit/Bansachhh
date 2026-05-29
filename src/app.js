@@ -31,7 +31,8 @@ app.engine(
             },
             totalPrice: (price, quantity) => {
                 return Number(price || 0) * Number(quantity || 0)
-            }
+            },
+            increment: (value) => Number(value) + 1
 
         }
     }),

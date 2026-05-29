@@ -2,6 +2,8 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon --exec \"node --dns-result-order=ipv4first\" src/app.js",
+    "seed": "node src/scripts/seedUsersAndOrders.js",
+    "fake-data": "node src/scripts/fakeRevenueData.js",
     "sass": "sass --watch src/sass/app.scss src/public/css/app.css",
     "format": "prettier --single-quote all --tab-width 4 --write 'src/**/*.{js,scss,json,hbs}'"
   },

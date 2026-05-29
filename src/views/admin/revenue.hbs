@@ -1,0 +1,112 @@
+<section class="content">
+    <div class="report-card">
+        <div class="report-header">
+            <div>
+                <h2 class="title">Báo cáo doanh thu</h2>
+                <p class="report-subtitle">Doanh thu theo thời gian</p>
+            </div>
+            <div class="filter-group">
+                <label for="revenueRange">Xem theo</label>
+                <select id="revenueRange" class="range-select">
+                    <option value="day">Theo ngày</option>
+                    <option value="week">Theo tuần</option>
+                    <option value="month">Theo tháng</option>
+                    <option value="year">Theo năm</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="chart-wrapper">
+            <canvas id="revenueChart"></canvas>
+        </div>
+
+        <div class="summary-box">
+            <div class="summary-card">
+                <span>Tổng doanh thu</span>
+                <strong id="summaryRevenue">0 VNĐ</strong>
+            </div>
+            <div class="summary-card">
+                <span>Tổng đơn hàng</span>
+                <strong id="summaryOrders">0</strong>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const revenueRange = document.getElementById('revenueRange')
+    const revenueChartCanvas = document.getElementById('revenueChart').getContext('2d')
+    const summaryRevenue = document.getElementById('summaryRevenue')
+    const summaryOrders = document.getElementById('summaryOrders')
+
+    const formatCurrency = (value) => {
+        return new Intl.NumberFormat('vi-VN').format(value) + ' VNĐ'
+    }
+
+    const chartConfig = {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [
+                {
+                    label: 'Doanh thu (VNĐ)',
+                    data: [],
+                    backgroundColor: 'rgba(56, 189, 248, 0.25)',
+                    borderColor: 'rgba(56, 189, 248, 1)',
+                    fill: true,
+                    tension: 0.35,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: (value) => {
+                            return new Intl.NumberFormat('vi-VN').format(value)
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: (context) => {
+                            return formatCurrency(context.parsed.y)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    const revenueChart = new Chart(revenueChartCanvas, chartConfig)
+
+    const loadRevenueData = async (range) => {
+        const response = await fetch(`/admin/statistics/revenue-data?range=${range}`)
+        const data = await response.json()
+
+        revenueChart.data.labels = data.labels
+        revenueChart.data.datasets[0].data = data.values
+        revenueChart.update()
+
+        summaryRevenue.textContent = formatCurrency(data.totalRevenue)
+        summaryOrders.textContent = data.totalOrders
+    }
+
+    revenueRange.addEventListener('change', () => {
+        loadRevenueData(revenueRange.value)
+    })
+
+    loadRevenueData(revenueRange.value)
+</script>

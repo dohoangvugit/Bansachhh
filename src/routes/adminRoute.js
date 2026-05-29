@@ -6,6 +6,7 @@ const upload = require('../middlewares/upload')
 const userManagerController = require('../controllers/admin/userManagerController')
 const bookManagerController = require('../controllers/admin/bookManagerController')
 const orderManagerController = require('../controllers/admin/orderManagerController')
+const statisticsController = require('../controllers/admin/statisticsController')
 
 // API quản lý tài khoản
 router.get('/', userManagerController.getAllUsers)
@@ -28,5 +29,10 @@ router.get('/add', bookManagerController.getAddBook)
 router.get('/ordermanager', orderManagerController.getAllOrders)
 router.get('/order/detail/:id', orderManagerController.getOrderById)
 router.get('/order/delete/:id', orderManagerController.delete)
+
+// Thống kê
+router.get('/statistics/bestseller', statisticsController.getBestSeller)
+router.get('/statistics/revenue', statisticsController.getRevenue)
+router.get('/statistics/revenue-data', statisticsController.getRevenueData)
 
 module.exports = router
